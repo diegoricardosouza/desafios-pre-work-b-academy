@@ -10,9 +10,48 @@
     <form data-js="form">
       <label for="nome">Nome</label>
       <input type="text" name="nome" id="nome" data-js="nome">
-
-      <!-- <button type="submit">Enviar</button> -->
     </form>
+
+    <hr>
+
+    <div style="display: flex; justify-content: center; align-items: flex-start;">
+      <table border='1' cellspacing="0" cellpadding="0" style="flex: 0 0 30%;" data-js="tabela">
+        <thead>
+          <tr>
+            <th>Imagem</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Placa</th>
+            <th>Cor</th>
+          </tr>
+        </thead>
+
+        <tbody data-js="tabelaBody"></tbody>
+      </table>
+
+      <form data-js="formCarro" style="flex: 0 0 50%; margin: 0 0 0 50px;">
+        <label for="img">Imagem</label>
+        <input type="text" name="img" id="img" data-js="img">
+
+        <label for="marca">Marca</label>
+        <input type="text" name="marca" id="marca" data-js="marca">
+
+        <label for="modelo">Modelo</label>
+        <input type="text" name="modelo" id="modelo" data-js="modelo">
+
+        <label for="ano">Ano</label>
+        <input type="text" name="ano" id="ano" data-js="ano">
+
+        <label for="placa">Placa</label>
+        <input type="text" name="placa" id="placa" data-js="placa">
+
+        <label for="cor">Cor</label>
+        <input type="text" name="cor" id="cor" data-js="cor"><br><br>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
 
     <script type="module" src="/src/main.js"></script>
   </body>

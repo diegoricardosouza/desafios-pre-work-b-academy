@@ -24,16 +24,16 @@ let sel = document.createElement("select");
 sel.setAttribute('multiple', 'multiple')
 sel.setAttribute('data-js', 'colors')
 
-let optarr =  ['Blue','Green','Yellow','Black','Red'];
-for(var i = 0;i<optarr.length;i++) {
+let arrColors =  ['Blue','Green','Yellow','Black','Red'];
+for(var i = 0;i<arrColors.length;i++) {
   let opt = document.createElement("option");
-  opt.text = optarr[i];
-  opt.value = optarr[i].toLowerCase();
-  opt.className = optarr[i];
-  sel.appendChild(opt);
+  opt.text = arrColors[i]
+  opt.value = arrColors[i].toLowerCase();
+  opt.className = arrColors[i]
+  sel.appendChild(opt)
 }
 
-form.appendChild(sel);
+form.appendChild(sel)
 
 const colors = document.querySelector('[data-js="colors"]')
 const boxColors = document.createElement("div");
