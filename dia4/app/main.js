@@ -5,18 +5,44 @@ const tabelaBody = document.querySelector('[data-js="tabelaBody"]')
 const formCarro = document.querySelector('[data-js="formCarro"]')
 const msg = document.querySelector('[data-js="msg"]')
 
-fetch(url).then((response) => {
-  response.json().then((data) => {
-    populaTable(data)
-  });
-})
+getData()
+
+function getData() {
+  fetch(url).then((response) => {
+    response.json().then((data) => {
+      populaTable(data)
+
+      const btDel = document.querySelectorAll('[data-js="del"]')
+      delData(btDel)
+    })
+  })
+}
+
+function delData(btnArr) {
+  btnArr.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const plateD = e.target.getAttribute("data-plate")
+
+      fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({ plate: plateD})
+      }).then(() => {
+        tabelaBody.innerHTML = ''
+        getData()
+      })
+    })
+  })
+}
 
 function populaTable(data) {
   if (data.length > 0) {
     data.forEach((input) => {
       const a = [input.image, input.brandModel, input.year, input.plate, input.color]
 
-      createLines(a)
+      createLines(a, input.plate)
     })
   } else {
     const td = document.createElement("td");
@@ -40,7 +66,7 @@ function createNewTable(res) {
 
     result.map((res) => {
       const a = [res.image, res.brandModel, res.year, res.plate, res.color]
-      createLines(a)
+      createLines(a, res.plate)
     })
   })
 }
@@ -67,16 +93,27 @@ function insertData (data) {
   })
 }
 
-function createLines(arr) {
+function createLines(arr, plate) {
   const tr = document.createElement("tr")
   tabelaBody.appendChild(tr)
 
   arr.forEach((res) => {
     const td = document.createElement("td")
+
     td.textContent = res
     tr.appendChild(td)
   })
+
+  const del = document.createElement("td")
+  const buttonDel = document.createElement("button")
+  buttonDel.textContent = 'Excluir'
+  buttonDel.setAttribute('data-js', 'del')
+  buttonDel.setAttribute('data-plate', plate)
+  del.appendChild(buttonDel)
+  tr.appendChild(del)
 }
+
+
 
 formCarro.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -100,5 +137,3 @@ formCarro.addEventListener('submit', (e) => {
   formCarro.reset()
   e.target.elements.img.focus()
 })
-
-
