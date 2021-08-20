@@ -22,3 +22,12 @@ select {
   height: 90px;
   margin-top: 15px;
 }
+
+.msg {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.success {
+  color: green;
+}
