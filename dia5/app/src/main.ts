@@ -133,7 +133,7 @@ function createTableRow (data: TableRowData) {
 
   tr.appendChild(button)
 
-  table?.appendChild(tr)
+  table.appendChild(tr)
 }
 
 async function handleDelete (e: MouseEvent) {
